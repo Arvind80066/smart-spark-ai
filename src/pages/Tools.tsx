@@ -10,8 +10,8 @@ import {
   Code, 
   FileText, 
   Edit,
-  Translate,
-  GrammarCase,
+  Languages, 
+  Check, 
   ImagePlus
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -85,13 +85,13 @@ export default function Tools() {
       to: "/documents"
     },
     {
-      icon: <Translate size={24} />,
+      icon: <Languages size={24} />,
       title: "Translator",
       description: "Translate between languages",
       to: "/translator"
     },
     {
-      icon: <GrammarCase size={24} />,
+      icon: <Check size={24} />,
       title: "Grammar Checker",
       description: "Check and correct grammar",
       to: "/grammar-checker"
