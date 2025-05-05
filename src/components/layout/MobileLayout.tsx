@@ -36,7 +36,11 @@ export function MobileLayout({ children }: { children: React.ReactNode }) {
     <div className="flex flex-col h-screen w-full">
       <header className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full ai-gradient-bg"></div>
+          <img 
+            src="/lovable-uploads/dd0646a7-9a45-4b11-a407-28ccef2a3d74.png" 
+            alt="AI Powerhouse Logo" 
+            className="w-8 h-8 rounded-full object-cover"
+          />
           <h1 className="text-xl font-bold">AI Powerhouse</h1>
         </div>
         <ThemeToggle />
