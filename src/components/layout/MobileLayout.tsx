@@ -1,15 +1,7 @@
 
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { 
-  MessageSquare, 
-  Image, 
-  Mic, 
-  Volume2, 
-  Code, 
-  FileText, 
-  Settings
-} from "lucide-react";
+import { Home, Grid, History, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -55,13 +47,10 @@ export function MobileLayout({ children }: { children: React.ReactNode }) {
       </main>
       
       <nav className="fixed bottom-0 w-full border-t bg-background flex justify-around items-center h-16">
-        <NavItem to="/" icon={MessageSquare} label="Chat" />
-        <NavItem to="/image-generator" icon={Image} label="Images" />
-        <NavItem to="/speech-to-text" icon={Mic} label="STT" />
-        <NavItem to="/text-to-speech" icon={Volume2} label="TTS" />
-        <NavItem to="/code-assistant" icon={Code} label="Code" />
-        <NavItem to="/documents" icon={FileText} label="Docs" />
-        <NavItem to="/settings" icon={Settings} label="Settings" />
+        <NavItem to="/" icon={Home} label="Home" />
+        <NavItem to="/tools" icon={Grid} label="Tools" />
+        <NavItem to="/history" icon={History} label="History" />
+        <NavItem to="/profile" icon={User} label="Profile" />
       </nav>
     </div>
   );
