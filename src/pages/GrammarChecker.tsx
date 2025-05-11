@@ -41,25 +41,25 @@ export default function GrammarChecker() {
           suggestion: "it's",
           type: "grammar",
           position: [text.indexOf("its"), text.indexOf("its") + 3]
-        },
+        } as CorrectionType,
         {
           original: "alot",
           suggestion: "a lot",
           type: "spelling",
           position: [text.indexOf("alot"), text.indexOf("alot") + 4]
-        },
+        } as CorrectionType,
         {
           original: "i",
           suggestion: "I",
           type: "grammar",
           position: [text.indexOf("i"), text.indexOf("i") + 1]
-        },
+        } as CorrectionType,
         {
           original: "very very",
           suggestion: "extremely",
           type: "style",
           position: [text.indexOf("very very"), text.indexOf("very very") + 9]
-        }
+        } as CorrectionType
       ].filter(c => c.position[0] !== -1); // Only include corrections that exist in the text
       
       let correctedText = text;
