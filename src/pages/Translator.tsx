@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Languages, Copy, ArrowDownUp, VolumeUp } from "lucide-react";
+import { Languages, Copy, ArrowDownUp, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -170,7 +170,7 @@ export default function Translator() {
                   className="h-8 w-8" 
                   onClick={() => handleSpeak(translatedText)}
                 >
-                  <VolumeUp className="h-4 w-4" />
+                  <Volume2 className="h-4 w-4" />
                 </Button>
               </div>
               <div className="pt-6">
