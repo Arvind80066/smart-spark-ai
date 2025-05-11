@@ -1,9 +1,20 @@
 
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { Home, Grid, History, User } from "lucide-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Home, Grid, History, User, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useAuth } from "@/contexts/AuthContext";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface NavItemProps {
   to: string;
@@ -32,6 +43,26 @@ const NavItem = ({ to, icon: Icon, label }: NavItemProps) => {
 };
 
 export function MobileLayout({ children }: { children: React.ReactNode }) {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+  
+  const getInitials = () => {
+    if (!user) return "?";
+    if (user.user_metadata?.full_name) {
+      return user.user_metadata.full_name.split(" ")
+        .map((name: string) => name[0])
+        .join("")
+        .toUpperCase()
+        .substring(0, 2);
+    }
+    return user.email ? user.email[0].toUpperCase() : "?";
+  };
+  
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/auth");
+  };
+  
   return (
     <div className="flex flex-col h-screen w-full">
       <header className="flex items-center justify-between p-4 border-b">
@@ -43,7 +74,38 @@ export function MobileLayout({ children }: { children: React.ReactNode }) {
           />
           <h1 className="text-xl font-bold">AI Powerhouse</h1>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback className="bg-primary text-primary-foreground text-xs">
+                    {getInitials()}
+                  </AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => navigate("/profile")}>
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/api-keys")}>
+                API Keys
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/settings")}>
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log out</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </header>
       
       <main className="flex-1 overflow-auto pb-16">

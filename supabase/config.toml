@@ -1,1 +1,11 @@
+
 project_id = "qwiltdsextydytyihzoo"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage"]
+
+[functions]
+[functions.api-proxy]
+verify_jwt = true
